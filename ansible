@@ -1,0 +1,38 @@
+# Ansible Basic commands
++==================+================+=================+=================
+## ansible utilitys:
+  ###  1 . To check memory space
+                    [webserver]    [python module]
+        - ansible ServerName/Group -m command -a "free -m" -s
+                                              [arguments]   [root privilege]
+
+        > ansible web -m command -a "free -m" -s 
+
+  ###  2. To copy perticular file 
+        - ansible webNode1 -m copy -a " src=/  dest=/ "
+
+        > ansible webNode1 -m copy -a "src=./file1 dest=/etc/ansible/"
+
+  ###  3. To install perticular package 
+        - ansible webNode1 -m yum -a " name=httpd state=present " -s 
+
+PLAYBOOK commands
+=========================================================
+# ansible-playbook playbookName
+# it is use for to change only those server 
+- ansible-playbook playbookName.yml -i /etc/ansible/playbookName.retry
+
+### to see how many host effected 
+    - ansible-playbook playbookName.yml --list-host 
+
+### to see check syntex 
+    - ansible-playbook playbookName.yml --syntex-check 
+
+
+### to check how many tasks is to executed 
+    - ansible-playbook playbookName.yml --list-tasks
+
+
+### to control execution flow 
+    - ansible-playbook playbookName.yml --step 
+        > it ask YES or NOT or CONTINUE
